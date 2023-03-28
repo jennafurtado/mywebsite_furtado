@@ -4,11 +4,11 @@ project:
 
 website:
   page-footer: 
-    left: "Copyright 2022, Testy R. Testman" 
+    left: "Copyright 2023, Jenna Furtado" 
     right: 
       - icon: github
         href: https://github.com/
-  title: "Aaron's Website"
+  title: "Jenna's Website"
   navbar:
     left:
       - href: index.qmd

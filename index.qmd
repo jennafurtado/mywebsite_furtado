@@ -1,8 +1,8 @@
 ---
-title: "Aaron M. Kessler"
+title: "Jenna L. E. Furtado"
 about:
   template: jolla
-  image: testimage.jpg
+  image: thumbnail_IMG-1054.jpg
   links:
     - icon: twitter
       text: twitter
@@ -12,20 +12,20 @@ about:
       href: https://github.com/amkessler
 ---
 
-Hi, I'm Aaron and I'm a reporter at the AP in Washington. I like data, the ocean and F1 racing. I've got two little ones and enjoy watching them grow up.
+Hi, I'm Jenna. I'm a senior at George Washington University, double majoring in history and anthropology with a minor in Journalism and Mass Communications. I'm interested in reading, hiking, and watching documentaries on streaming services. 
 
 ## Education
 
-University of Missouri tktktktk
+Arcata High School
 
-Columbia University
-
-Washington University in St. Louis
+George Washington University
 
 ## Skills
 
-Reporting and Writing
+Archival research
 
-Data Analysis
+Writing 
 
-FOIA laws
+Customer Service
+
+Graphic Design
