@@ -2,6 +2,18 @@
 title: "Portfolio"
 ---
 
-Hi there this is my portfolio page! Yay...
-  
-Here's another line for good measure.
+Hi there this is my portfolio page!
+
+***Alice Dunnigan Story***
+
+This [story](https://boundarystones.weta.org/2023/02/10/alice-dunnigan-left-her-mark-first-black-female-white-house-reporter), published by WETA's Boundary Stones website, tells the story of journalist Alice Dunnigan. Dunnigan was one of two women in the White House Press Corps in the 1950s and blazed a trail for female journalists.
+
+***Ethel Payne Story***
+
+Published on WETA's Boundary Stones website, this [story](https://boundarystones.weta.org/2022/09/30/ethel-payne-first-lady-black-press) captures the history of Ethel Payne. Along with Dunnigan, mentioned above, Payne was one of two Black female journalists in the White House press corps in the 1950s.
+
+***Catonsville Nine Story***
+
+[![](Catonsville_Nine_historical_plaque_(50688813176).jpg){fig-alt="A sign post, erected by the Maryland Historical Society, with the words Catonsville Nine bolded across the top. The sign describes the actions of the nine."}](https://boundarystones.weta.org/sites/default/files/styles/embed/public/Catonsville_Nine_historical_plaque_%2850688813176%29.jpg?itok=TzWz6fsw)
+
+This story recounts the tale of the Catonsville Nine. These nine people walked in to the Selective Services Office in Catonsville, Maryland, grabbed draft files, and walked outside to burn the files in the parking lot outside the building.

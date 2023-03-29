@@ -6,10 +6,10 @@ about:
   links:
     - icon: twitter
       text: twitter
-      href: https://twitter.com/akesslerdc
+      href: https://twitter.com
     - icon: github
       text: Github
-      href: https://github.com/amkessler
+      href: https://github.com/jennafurtado
 ---
 
 Hi, I'm Jenna. I'm a senior at George Washington University, double majoring in history and anthropology with a minor in Journalism and Mass Communications. I'm interested in reading, hiking, and watching documentaries on streaming services. 
