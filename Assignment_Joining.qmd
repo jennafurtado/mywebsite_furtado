@@ -1,0 +1,146 @@
+---
+title: "Walkthrough Analysis"
+author: "Jenna Furtado"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-location: left
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(here)
+
+```
+
+# Load the datasets
+
+```{r}
+
+counties_demographics <- readRDS(here("data", "counties_demographics.rds"))
+counties_elexresults <- readRDS(here("data", "counties_elexresults.rds"))
+counties_rural_urban_suburban <- readRDS(here("data", "counties_rural_urban_suburban.rds"))
+
+
+
+```
+
+# Exercises
+
+1)  
+
+Join together the election results and urban/suburban/rural tables above, and then use the merged table to:
+
+-   filter for just Virginia
+
+-   group_by and summarize to calculate the mean pct of Trump 2020 vote (`pct_r_2020`) by urban/rural categories (`rural_urban`)
+
+```{r}
+
+inner_join(counties_elexresults, counties_rural_urban_suburban) %>% 
+  filter(state_code == "VA") %>% 
+  group_by(rural_urban) %>% 
+  summarise(mean(pct_r_2020))
+
+#Using the pipe above, I joined the two tables together and found that in Virginia, the average percentage of votes for Trump in 2020 increased the more rural the county was.
+```
+
+2)  
+
+Using the joined election results / urban/suburban/rural table created above:
+
+-   filter for just Virginia
+
+-   count up how many counties were won by party in 2020 (`winner_2020`) by urban/rural categories
+
+```{r}
+
+inner_join(counties_elexresults, counties_rural_urban_suburban) %>% 
+  filter(state_code == "VA") %>% 
+  group_by(rural_urban) %>% 
+  count(winner_2020)
+
+#The pipe above demonstrated somewhat similar results to the question before, although the count saw that there were 22 Republicans that won in large fringe areas and 22 Democrats that won. I thought that this was interesting, especially because the disparities between parties in the more rural areas.
+```
+
+3)  
+
+Join together the election results and demographics tables above, and then use the joined table to:
+
+-   filter for just Florida
+
+-   group/summarize to calculate the mean pct of Trump 2020 vote in the counties above or below national average for college graduates (`pct_ed_college_all_abovebelow_natl`)
+
+```{r}
+
+inner_join(counties_elexresults, counties_demographics) %>% 
+  filter(state_code == "FL") %>% 
+  group_by(pct_ed_college_all_abovebelow_natl) %>% 
+  summarise(mean(pct_r_2020))
+
+#With the pipe above, I found that there was a higher average percentage of Republican votes in 2020 in counties that were below the national average for college graduates. 
+```
+
+4)  
+
+Using the joined table you made above:
+
+-   group/summarize to calculate the mean pct of Trump 2020 vote by counties above or below the national average for college graduates (`pct_ed_college_all_abovebelow_natl`).
+
+    Note we're looking for the entire country here.
+
+```{r}
+
+inner_join(counties_elexresults, counties_demographics) %>% 
+  group_by(pct_ed_college_all_abovebelow_natl) %>% 
+  summarise(mean(pct_r_2020))
+
+#Using the pipe above, I saw a similar answer as the one specifically for Florida reflected in all fifty states. In counties with the below the national average of college graduates, the percentage of people who voted Republican was higher. 
+```
+
+Now using the joined datasets above, come up with two groupings you find interesting or newsworthy in a particular state, and replicate the steps above them them instead.
+
+5)  
+
+```{r}
+
+inner_join(counties_elexresults, counties_rural_urban_suburban) %>% 
+  filter(state_code == "CA") %>% 
+  group_by(rural_urban) %>% 
+  summarise(mean(pct_r_2020))
+
+#For my first inquiry, I decided to focus on California because it's my home state. California is known for being heavily democratic, although like many other states, it is much more republican in rural areas. That was my assumption. To look further into, I decided to group by the average percentage of people that voted republican and found that while my original assumption was correct, a hefty chunk (30%) of people still voted Republican in more urban areas.
+```
+
+6)  
+
+```{r}
+
+inner_join(counties_elexresults, counties_demographics) %>% 
+  filter(state_code == "WA") %>% 
+  group_by(pct_mil_veteran_abovebelow_natl) %>% 
+  summarise(mean(pct_d_2020))
+
+#For my second inquiry, I decided to branch out a little, though not very far since I picked another state on the west coast, Washington. For this, I was interested in looking at counties through the demographic of military veterans. There is a stereotype that veterans tend to vote more conservative, and I wanted to see if that rang true in Washington (though it is a more liberal state, so maybe I should have looked at Tennessee). I looked specifically at the average percentage of people that voted democratic, and found that while it was less than those who voted republican, it is much closer to half of the population. Again, if I tried this again I would look a more conservative state to see if it had the same results.
+
+```
+
+7)  Extra credit
+
+Up until now we've joined two tables together. But we actually have three tables in this project. How might we join all three together into a single table, so all the measures for each county are combined in one place? (Hint: you can do this is multiple steps, doesn't have to be one step only.)
+
+```{r}
+
+
+inner_join(counties_elexresults, counties_rural_urban_suburban)
+
+table1 <- inner_join(counties_elexresults, counties_rural_urban_suburban)
+
+inner_join(table1, counties_demographics)
+
+#I decided to attempt the extra credit, and I think I succeed. I first joined the first two tables together, then labeled that join "table1." From there, I joined "table1" and the final table together. When I ran the code, I believe that all of the columns were successfully put in the merged table, though I may be wrong.
+```
