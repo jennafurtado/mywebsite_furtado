@@ -4022,6 +4022,8 @@ vertical-align: -.125em;
     <a class="nav-link active" href="./walkthrough.html" aria-current="page">
  <span class="menu-text">Analysis Walkthrough Example</span></a>
   </li>  
+  <li class="dropdown-header">
+ <span class="menu-text">Assignment_joing.qmd</span></li>
 </ul>
               <div id="quarto-search" class title="Search"></div>
           </div> <!-- /navcollapse -->
@@ -4033,7 +4035,14 @@ vertical-align: -.125em;
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#load-the-datasets" id="toc-load-the-datasets" class="nav-link active" data-scroll-target="#load-the-datasets">Load the datasets</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -4061,62 +4070,296 @@ vertical-align: -.125em;
 
 </header>
 
-<p>We’ll start by loading. our libraries.</p>
+<section id="load-the-datasets" class="level1">
+<h1>Load the datasets</h1>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>counties_demographics <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;counties_demographics.rds&quot;</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>counties_elexresults <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;counties_elexresults.rds&quot;</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>counties_rural_urban_suburban <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;counties_rural_urban_suburban.rds&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="exercises" class="level1">
+<h1>Exercises</h1>
+<ol type="1">
+<li></li>
+</ol>
+<p>Join together the election results and urban/suburban/rural tables above, and then use the merged table to:</p>
+<ul>
+<li><p>filter for just Virginia</p></li>
+<li><p>group_by and summarize to calculate the mean pct of Trump 2020 vote (<code>pct_r_2020</code>) by urban/rural categories (<code>rural_urban</code>)</p></li>
+</ul>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(counties_elexresults, counties_rural_urban_suburban) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(state_code <span class="sc">==</span> <span class="st">&quot;VA&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(rural_urban) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(pct_r_2020))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.0     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.1     ✔ tibble    3.1.8
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.1     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the ]8;;http://conflicted.r-lib.org/conflicted package]8;; to force all conflicts to become errors</code></pre>
+<pre><code>Joining with `by = join_by(geoid)`</code></pre>
 </div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p>We’re going to look at some sample data from Texas on housing prices throughout the state.</p>
-<p>First we’ll load data.</p>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run this line below load the data for this assignment</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we&#39;ll use a built-in dataset from the ggplot2 package (loaded as party of the tidyverse)</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>housesales <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span>txhousing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p>Now, let’s see what the data looks like</p>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>housesales <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 9
-  city     year month sales   volume median listings inventory  date
-  &lt;chr&gt;   &lt;int&gt; &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
-1 Abilene  2000     1    72  5380000  71400      701       6.3 2000 
-2 Abilene  2000     2    98  6505000  58700      746       6.6 2000.
-3 Abilene  2000     3   130  9285000  58100      784       6.8 2000.
-4 Abilene  2000     4    98  9730000  68600      785       6.9 2000.
-5 Abilene  2000     5   141 10590000  67300      794       6.8 2000.
-6 Abilene  2000     6   156 13910000  66900      780       6.6 2000.</code></pre>
+<pre><code># A tibble: 6 × 2
+  rural_urban   `mean(pct_r_2020)`
+  &lt;fct&gt;                      &lt;dbl&gt;
+1 Large central               24.5
+2 Large fringe                48.2
+3 Medium                      66.8
+4 Small                       52.5
+5 Micropolitan                65.0
+6 Noncore                     61.8</code></pre>
 </div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the pipe above, I joined the two tables together and found that in Virginia, the average percentage of votes for Trump in 2020 increased the more rural the county was.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="2" type="1">
+<li></li>
+</ol>
+<p>Using the joined election results / urban/suburban/rural table created above:</p>
+<ul>
+<li><p>filter for just Virginia</p></li>
+<li><p>count up how many counties were won by party in 2020 (<code>winner_2020</code>) by urban/rural categories</p></li>
+</ul>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(counties_elexresults, counties_rural_urban_suburban) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(state_code <span class="sc">==</span> <span class="st">&quot;VA&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(rural_urban) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(winner_2020)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(geoid)`</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 × 3
+# Groups:   rural_urban [6]
+   rural_urban   winner_2020     n
+   &lt;fct&gt;         &lt;chr&gt;       &lt;int&gt;
+ 1 Large central D               5
+ 2 Large fringe  D              22
+ 3 Large fringe  R              22
+ 4 Medium        D               2
+ 5 Medium        R              12
+ 6 Small         D               7
+ 7 Small         R              11
+ 8 Micropolitan  D               2
+ 9 Micropolitan  R               6
+10 Noncore       D               8
+11 Noncore       R              36</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The pipe above demonstrated somewhat similar results to the question before, although the count saw that there were 22 Republicans that won in large fringe areas and 22 Democrats that won. I thought that this was interesting, especially because the disparities between parties in the more rural areas.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="3" type="1">
+<li></li>
+</ol>
+<p>Join together the election results and demographics tables above, and then use the joined table to:</p>
+<ul>
+<li><p>filter for just Florida</p></li>
+<li><p>group/summarize to calculate the mean pct of Trump 2020 vote in the counties above or below national average for college graduates (<code>pct_ed_college_all_abovebelow_natl</code>)</p></li>
+</ul>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(counties_elexresults, counties_demographics) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(state_code <span class="sc">==</span> <span class="st">&quot;FL&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pct_ed_college_all_abovebelow_natl) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(pct_r_2020))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(geoid, pct_d_2020, pct_r_2020, pct_d_2016,
+pct_r_2016)`</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  pct_ed_college_all_abovebelow_natl `mean(pct_r_2020)`
+  &lt;chr&gt;                                           &lt;dbl&gt;
+1 ABOVE                                            48.0
+2 BELOW                                            66.7</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#With the pipe above, I found that there was a higher average percentage of Republican votes in 2020 in counties that were below the national average for college graduates. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="4" type="1">
+<li></li>
+</ol>
+<p>Using the joined table you made above:</p>
+<ul>
+<li><p>group/summarize to calculate the mean pct of Trump 2020 vote by counties above or below the national average for college graduates (<code>pct_ed_college_all_abovebelow_natl</code>).</p>
+<p>Note we’re looking for the entire country here.</p></li>
+</ul>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(counties_elexresults, counties_demographics) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pct_ed_college_all_abovebelow_natl) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(pct_r_2020))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(geoid, pct_d_2020, pct_r_2020, pct_d_2016,
+pct_r_2016)`</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  pct_ed_college_all_abovebelow_natl `mean(pct_r_2020)`
+  &lt;chr&gt;                                           &lt;dbl&gt;
+1 ABOVE                                            45.0
+2 BELOW                                            68.2</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the pipe above, I saw a similar answer as the one specifically for Florida reflected in all fifty states. In counties with the below the national average of college graduates, the percentage of people who voted Republican was higher. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Now using the joined datasets above, come up with two groupings you find interesting or newsworthy in a particular state, and replicate the steps above them them instead.</p>
+<ol start="5" type="1">
+<li></li>
+</ol>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(counties_elexresults, counties_rural_urban_suburban) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(state_code <span class="sc">==</span> <span class="st">&quot;CA&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(rural_urban) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(pct_r_2020))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(geoid)`</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  rural_urban   `mean(pct_r_2020)`
+  &lt;fct&gt;                      &lt;dbl&gt;
+1 Large central               30.7
+2 Large fringe                34.5
+3 Medium                      38.7
+4 Small                       50.6
+5 Micropolitan                50.6
+6 Noncore                     54.9</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#For my first inquiry, I decided to focus on California because it&#39;s my home state. California is known for being heavily democratic, although like many other states, it is much more republican in rural areas. That was my assumption. To look further into, I decided to group by the average percentage of people that voted republican and found that while my original assumption was correct, a hefty chunk (30%) of people still voted Republican in more urban areas.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="6" type="1">
+<li></li>
+</ol>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(counties_elexresults, counties_demographics) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(state_code <span class="sc">==</span> <span class="st">&quot;WA&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pct_mil_veteran_abovebelow_natl) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(pct_d_2020))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(geoid, pct_d_2020, pct_r_2020, pct_d_2016,
+pct_r_2016)`</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  pct_mil_veteran_abovebelow_natl `mean(pct_d_2020)`
+  &lt;chr&gt;                                        &lt;dbl&gt;
+1 ABOVE                                         44.5
+2 BELOW                                         49.3</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#For my second inquiry, I decided to branch out a little, though not very far since I picked another state on the west coast, Washington. For this, I was interested in looking at counties through the demographic of military veterans. There is a stereotype that veterans tend to vote more conservative, and I wanted to see if that rang true in Washington (though it is a more liberal state, so maybe I should have looked at Tennessee). I looked specifically at the average percentage of people that voted democratic, and found that while it was less than those who voted republican, it is much closer to half of the population. Again, if I tried this again I would look a more conservative state to see if it had the same results.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="7" type="1">
+<li>Extra credit</li>
+</ol>
+<p>Up until now we’ve joined two tables together. But we actually have three tables in this project. How might we join all three together into a single table, so all the measures for each county are combined in one place? (Hint: you can do this is multiple steps, doesn’t have to be one step only.)</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(counties_elexresults, counties_rural_urban_suburban)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(geoid)`</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,112 × 19
+   geoid total…¹ democ…² repub…³ pct_d…⁴ pct_r…⁵ winne…⁶ margi…⁷ total…⁸ democ…⁹
+   &lt;chr&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 01001   27691    7503   19838    27.1    71.6 R          44.5   24973    5936
+ 2 01003  109351   24578   83544    22.5    76.4 R          53.9   95215   18458
+ 3 01005   10506    4816    5622    45.8    53.5 R           7.7   10469    4871
+ 4 01007    9585    1986    7525    20.7    78.5 R          57.8    8819    1874
+ 5 01009   27560    2640   24711     9.6    89.7 R          80.1   25588    2156
+ 6 01011    4611    3446    1146    74.7    24.9 D          49.8    4710    3530
+ 7 01013    9482    3965    5458    41.8    57.6 R          15.8    8732    3726
+ 8 01015   50870   15216   35101    29.9    69   R          39.1   47864   13242
+ 9 01017   15259    6365    8753    41.7    57.4 R          15.7   13900    5784
+10 01019   12289    1624   10583    13.2    86.1 R          72.9   10733    1547
+# … with 3,102 more rows, 9 more variables: republican_2016 &lt;dbl&gt;,
+#   winner_2016 &lt;chr&gt;, pct_d_2016 &lt;dbl&gt;, pct_r_2016 &lt;dbl&gt;, margin_2016 &lt;dbl&gt;,
+#   county &lt;chr&gt;, county_name &lt;chr&gt;, state_code &lt;chr&gt;, rural_urban &lt;fct&gt;, and
+#   abbreviated variable names ¹​totalvotes_2020, ²​democrat_2020,
+#   ³​republican_2020, ⁴​pct_d_2020, ⁵​pct_r_2020, ⁶​winner_2020, ⁷​margin_2020,
+#   ⁸​totalvotes_2016, ⁹​democrat_2016</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>table1 <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(counties_elexresults, counties_rural_urban_suburban)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(geoid)`</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(table1, counties_demographics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(geoid, pct_d_2020, pct_r_2020, pct_d_2016,
+pct_r_2016, county, county_name, state_code)`</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,112 × 38
+   geoid total…¹ democ…² repub…³ pct_d…⁴ pct_r…⁵ winne…⁶ margi…⁷ total…⁸ democ…⁹
+   &lt;chr&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 01001   27691    7503   19838    27.1    71.6 R          44.5   24973    5936
+ 2 01003  109351   24578   83544    22.5    76.4 R          53.9   95215   18458
+ 3 01005   10506    4816    5622    45.8    53.5 R           7.7   10469    4871
+ 4 01007    9585    1986    7525    20.7    78.5 R          57.8    8819    1874
+ 5 01009   27560    2640   24711     9.6    89.7 R          80.1   25588    2156
+ 6 01011    4611    3446    1146    74.7    24.9 D          49.8    4710    3530
+ 7 01013    9482    3965    5458    41.8    57.6 R          15.8    8732    3726
+ 8 01015   50870   15216   35101    29.9    69   R          39.1   47864   13242
+ 9 01017   15259    6365    8753    41.7    57.4 R          15.7   13900    5784
+10 01019   12289    1624   10583    13.2    86.1 R          72.9   10733    1547
+# … with 3,102 more rows, 28 more variables: republican_2016 &lt;dbl&gt;,
+#   winner_2016 &lt;chr&gt;, pct_d_2016 &lt;dbl&gt;, pct_r_2016 &lt;dbl&gt;, margin_2016 &lt;dbl&gt;,
+#   county &lt;chr&gt;, county_name &lt;chr&gt;, state_code &lt;chr&gt;, rural_urban &lt;fct&gt;,
+#   state_name &lt;chr&gt;, pct_born_foreign &lt;dbl&gt;, pct_mil_veteran &lt;dbl&gt;,
+#   pct_race_nonwhite &lt;dbl&gt;, pct_ed_college_all &lt;dbl&gt;,
+#   pct_ed_college_white &lt;dbl&gt;, pct_ed_college_white_male &lt;dbl&gt;,
+#   pct_ed_college_white_female &lt;dbl&gt;, …</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#I decided to attempt the extra credit, and I think I succeed. I first joined the first two tables together, then labeled that join &quot;table1.&quot; From there, I joined &quot;table1&quot; and the final table together. When I ran the code, I believe that all of the columns were successfully put in the merged table, though I may be wrong.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 
 
 <!-- -->
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -4303,40 +4546,143 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Analysis Walkthrough Example&quot;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> &quot;Jenna Furtado&quot;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: true</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>We&#39;ll start by loading. our libraries.</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>We&#39;re going to look at some sample data from Texas on housing prices throughout the state.</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>First we&#39;ll load data.</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co"># run this line below load the data for this assignment</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="co"># we&#39;ll use a built-in dataset from the ggplot2 package (loaded as party of the tidyverse)</span></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>housesales <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span>txhousing</span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>Now, let&#39;s see what the data looks like</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>housesales <span class="sc">%&gt;%</span> </span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb35" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Analysis Walkthrough Example&quot;</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> &quot;Jenna Furtado&quot;</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: true</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a><span class="fu"># Load the datasets</span></span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a>counties_demographics <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;counties_demographics.rds&quot;</span>))</span>
+<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a>counties_elexresults <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;counties_elexresults.rds&quot;</span>))</span>
+<span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a>counties_rural_urban_suburban <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;counties_rural_urban_suburban.rds&quot;</span>))</span>
+<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-29"><a href="#cb35-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-31"><a href="#cb35-31" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-32"><a href="#cb35-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-33"><a href="#cb35-33" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercises</span></span>
+<span id="cb35-34"><a href="#cb35-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-35"><a href="#cb35-35" aria-hidden="true" tabindex="-1"></a>1)  </span>
+<span id="cb35-36"><a href="#cb35-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-37"><a href="#cb35-37" aria-hidden="true" tabindex="-1"></a>Join together the election results and urban/suburban/rural tables above, and then use the merged table to:</span>
+<span id="cb35-38"><a href="#cb35-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-39"><a href="#cb35-39" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>filter for just Virginia</span>
+<span id="cb35-40"><a href="#cb35-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-41"><a href="#cb35-41" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>group_by and summarize to calculate the mean pct of Trump 2020 vote (<span class="in">`pct_r_2020`</span>) by urban/rural categories (<span class="in">`rural_urban`</span>)</span>
+<span id="cb35-42"><a href="#cb35-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-45"><a href="#cb35-45" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-46"><a href="#cb35-46" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(counties_elexresults, counties_rural_urban_suburban) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-47"><a href="#cb35-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(state_code <span class="sc">==</span> <span class="st">&quot;VA&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-48"><a href="#cb35-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(rural_urban) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-49"><a href="#cb35-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(pct_r_2020))</span>
+<span id="cb35-50"><a href="#cb35-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-51"><a href="#cb35-51" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the pipe above, I joined the two tables together and found that in Virginia, the average percentage of votes for Trump in 2020 increased the more rural the county was.</span></span>
+<span id="cb35-52"><a href="#cb35-52" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-53"><a href="#cb35-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-54"><a href="#cb35-54" aria-hidden="true" tabindex="-1"></a>2)  </span>
+<span id="cb35-55"><a href="#cb35-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-56"><a href="#cb35-56" aria-hidden="true" tabindex="-1"></a>Using the joined election results / urban/suburban/rural table created above:</span>
+<span id="cb35-57"><a href="#cb35-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-58"><a href="#cb35-58" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>filter for just Virginia</span>
+<span id="cb35-59"><a href="#cb35-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-60"><a href="#cb35-60" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>count up how many counties were won by party in 2020 (<span class="in">`winner_2020`</span>) by urban/rural categories</span>
+<span id="cb35-61"><a href="#cb35-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-64"><a href="#cb35-64" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-65"><a href="#cb35-65" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(counties_elexresults, counties_rural_urban_suburban) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-66"><a href="#cb35-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(state_code <span class="sc">==</span> <span class="st">&quot;VA&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-67"><a href="#cb35-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(rural_urban) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-68"><a href="#cb35-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(winner_2020)</span>
+<span id="cb35-69"><a href="#cb35-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-70"><a href="#cb35-70" aria-hidden="true" tabindex="-1"></a><span class="co">#The pipe above demonstrated somewhat similar results to the question before, although the count saw that there were 22 Republicans that won in large fringe areas and 22 Democrats that won. I thought that this was interesting, especially because the disparities between parties in the more rural areas.</span></span>
+<span id="cb35-71"><a href="#cb35-71" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-72"><a href="#cb35-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-73"><a href="#cb35-73" aria-hidden="true" tabindex="-1"></a>3)  </span>
+<span id="cb35-74"><a href="#cb35-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-75"><a href="#cb35-75" aria-hidden="true" tabindex="-1"></a>Join together the election results and demographics tables above, and then use the joined table to:</span>
+<span id="cb35-76"><a href="#cb35-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-77"><a href="#cb35-77" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>filter for just Florida</span>
+<span id="cb35-78"><a href="#cb35-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-79"><a href="#cb35-79" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>group/summarize to calculate the mean pct of Trump 2020 vote in the counties above or below national average for college graduates (<span class="in">`pct_ed_college_all_abovebelow_natl`</span>)</span>
+<span id="cb35-80"><a href="#cb35-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-83"><a href="#cb35-83" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-84"><a href="#cb35-84" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(counties_elexresults, counties_demographics) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-85"><a href="#cb35-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(state_code <span class="sc">==</span> <span class="st">&quot;FL&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-86"><a href="#cb35-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pct_ed_college_all_abovebelow_natl) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-87"><a href="#cb35-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(pct_r_2020))</span>
+<span id="cb35-88"><a href="#cb35-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-89"><a href="#cb35-89" aria-hidden="true" tabindex="-1"></a><span class="co">#With the pipe above, I found that there was a higher average percentage of Republican votes in 2020 in counties that were below the national average for college graduates. </span></span>
+<span id="cb35-90"><a href="#cb35-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-91"><a href="#cb35-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-92"><a href="#cb35-92" aria-hidden="true" tabindex="-1"></a>4)  </span>
+<span id="cb35-93"><a href="#cb35-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-94"><a href="#cb35-94" aria-hidden="true" tabindex="-1"></a>Using the joined table you made above:</span>
+<span id="cb35-95"><a href="#cb35-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-96"><a href="#cb35-96" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>group/summarize to calculate the mean pct of Trump 2020 vote by counties above or below the national average for college graduates (<span class="in">`pct_ed_college_all_abovebelow_natl`</span>).</span>
+<span id="cb35-97"><a href="#cb35-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-98"><a href="#cb35-98" aria-hidden="true" tabindex="-1"></a>    Note we&#39;re looking for the entire country here.</span>
+<span id="cb35-99"><a href="#cb35-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-102"><a href="#cb35-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-103"><a href="#cb35-103" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(counties_elexresults, counties_demographics) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-104"><a href="#cb35-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pct_ed_college_all_abovebelow_natl) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-105"><a href="#cb35-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(pct_r_2020))</span>
+<span id="cb35-106"><a href="#cb35-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-107"><a href="#cb35-107" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the pipe above, I saw a similar answer as the one specifically for Florida reflected in all fifty states. In counties with the below the national average of college graduates, the percentage of people who voted Republican was higher. </span></span>
+<span id="cb35-108"><a href="#cb35-108" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-109"><a href="#cb35-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-110"><a href="#cb35-110" aria-hidden="true" tabindex="-1"></a>Now using the joined datasets above, come up with two groupings you find interesting or newsworthy in a particular state, and replicate the steps above them them instead.</span>
+<span id="cb35-111"><a href="#cb35-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-112"><a href="#cb35-112" aria-hidden="true" tabindex="-1"></a>5)  </span>
+<span id="cb35-113"><a href="#cb35-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-116"><a href="#cb35-116" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-117"><a href="#cb35-117" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(counties_elexresults, counties_rural_urban_suburban) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-118"><a href="#cb35-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(state_code <span class="sc">==</span> <span class="st">&quot;CA&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-119"><a href="#cb35-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(rural_urban) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-120"><a href="#cb35-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(pct_r_2020))</span>
+<span id="cb35-121"><a href="#cb35-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-122"><a href="#cb35-122" aria-hidden="true" tabindex="-1"></a><span class="co">#For my first inquiry, I decided to focus on California because it&#39;s my home state. California is known for being heavily democratic, although like many other states, it is much more republican in rural areas. That was my assumption. To look further into, I decided to group by the average percentage of people that voted republican and found that while my original assumption was correct, a hefty chunk (30%) of people still voted Republican in more urban areas.</span></span>
+<span id="cb35-123"><a href="#cb35-123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-124"><a href="#cb35-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-125"><a href="#cb35-125" aria-hidden="true" tabindex="-1"></a>6)  </span>
+<span id="cb35-126"><a href="#cb35-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-129"><a href="#cb35-129" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-130"><a href="#cb35-130" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(counties_elexresults, counties_demographics) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-131"><a href="#cb35-131" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(state_code <span class="sc">==</span> <span class="st">&quot;WA&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-132"><a href="#cb35-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pct_mil_veteran_abovebelow_natl) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-133"><a href="#cb35-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(pct_d_2020))</span>
+<span id="cb35-134"><a href="#cb35-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-135"><a href="#cb35-135" aria-hidden="true" tabindex="-1"></a><span class="co">#For my second inquiry, I decided to branch out a little, though not very far since I picked another state on the west coast, Washington. For this, I was interested in looking at counties through the demographic of military veterans. There is a stereotype that veterans tend to vote more conservative, and I wanted to see if that rang true in Washington (though it is a more liberal state, so maybe I should have looked at Tennessee). I looked specifically at the average percentage of people that voted democratic, and found that while it was less than those who voted republican, it is much closer to half of the population. Again, if I tried this again I would look a more conservative state to see if it had the same results.</span></span>
+<span id="cb35-136"><a href="#cb35-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-137"><a href="#cb35-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-138"><a href="#cb35-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-139"><a href="#cb35-139" aria-hidden="true" tabindex="-1"></a>7)  Extra credit</span>
+<span id="cb35-140"><a href="#cb35-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-141"><a href="#cb35-141" aria-hidden="true" tabindex="-1"></a>Up until now we&#39;ve joined two tables together. But we actually have three tables in this project. How might we join all three together into a single table, so all the measures for each county are combined in one place? (Hint: you can do this is multiple steps, doesn&#39;t have to be one step only.)</span>
+<span id="cb35-142"><a href="#cb35-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-145"><a href="#cb35-145" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-146"><a href="#cb35-146" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(counties_elexresults, counties_rural_urban_suburban)</span>
+<span id="cb35-147"><a href="#cb35-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-148"><a href="#cb35-148" aria-hidden="true" tabindex="-1"></a>table1 <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(counties_elexresults, counties_rural_urban_suburban)</span>
+<span id="cb35-149"><a href="#cb35-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-150"><a href="#cb35-150" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(table1, counties_demographics)</span>
+<span id="cb35-151"><a href="#cb35-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-152"><a href="#cb35-152" aria-hidden="true" tabindex="-1"></a><span class="co">#I decided to attempt the extra credit, and I think I succeed. I first joined the first two tables together, then labeled that join &quot;table1.&quot; From there, I joined &quot;table1&quot; and the final table together. When I ran the code, I believe that all of the columns were successfully put in the merged table, though I may be wrong.</span></span>
+<span id="cb35-153"><a href="#cb35-153" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
