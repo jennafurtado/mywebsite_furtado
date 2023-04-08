@@ -1,0 +1,63 @@
+---
+title: Interactive Census Map Walkthrough
+---
+
+This page features a walkthrough of how to build an interactive map based on census data. In this example, I will be using the state of California, my home state, as the base for the map. 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(tigris)
+library(sf)
+library(tidycensus)
+library(htmltools)
+library(janitor)
+library(here)
+library(mapview)
+library(leafsync)
+library(leaflet.extras2)
+options(tigris_class = "sf")
+
+
+```
+
+The first step in the process, after loading in the packages that I plan to use, is to grab census data. This requires an API key, as shown below.
+```{r}
+ census_api_key("2a6f8c21a30d3024e038d67d7d4eba647dc79cd4", install=TRUE, overwrite = TRUE)
+```
+After running the code, the API key is stored, and you can comment it so it does not run every time. The next step is to choose the variables you want to examine with your map. This can be done using the code below.
+```{r}
+censusvariables <- load_variables(2020, "acs5", cache = TRUE)
+```
+Next, I specify which variables I will be examining with the code below.
+```{r}
+myvars <- c(totalpop = "B01003_001",
+            medincome = "B19013_001",
+            medage = "B01002_001")
+```
+In order to specify that we want to look at California, I have to pull the data and filter for the state. Then, I labeled it for ease of coding in the future.
+```{r}
+ca_counties_withgeo <- get_acs(geography = "county",
+                       variables = c(myvars),
+                       state = "CA",
+                       output = "wide",
+                       geometry = TRUE)
+```
+To make sure the rest of the map will be filled in appropriately, I am going to pull for all of the u.s. counties using this data.
+```{r}
+all_counties_withgeo <- get_acs(geography = "county",
+                       variables = c(myvars),
+                       output = "wide",
+                       geometry = TRUE)
+```
+Next, I am going to simplify the columns for ease of examining the data. The next two bits of code will shave off the MOE Column and remove the 'e' from the estimates column to clarify the wording.
+```{r}
+ca_counties_withgeo <- ca_counties_withgeo %>%
+  select(-ends_with("M"))
+```
+
+```{r}
+colnames(ca_counties_withgeo) <- sub("E$", "", colnames(ca_counties_withgeo)) 
+```
+
