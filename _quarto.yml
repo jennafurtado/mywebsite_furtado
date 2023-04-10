@@ -17,8 +17,8 @@ website:
       - portfolio.qmd
       - walkthrough.qmd
       - Map_Walkthrough.qmd
-      - writing_example
-      - news_story
+      - writing_example.qmd
+      - news_story.qmd
     
       
 
