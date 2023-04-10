@@ -60,4 +60,38 @@ ca_counties_withgeo <- ca_counties_withgeo %>%
 ```{r}
 colnames(ca_counties_withgeo) <- sub("E$", "", colnames(ca_counties_withgeo)) 
 ```
+Now that the data has been simplified, let's start by looking at what the map looks like using the 'median income' category.
+```{r}
+mapview(ca_counties_withgeo, zcol = "medincome")
+```
+To change up the color pattern a bit, I'm going to utilize R Color Brewer to shift the palette to one that features yellows and reds to match California's warmth.
+```{r}
+mapview(ca_counties_withgeo, zcol = "medincome", 
+         col.regions = RColorBrewer::brewer.pal(9, "YlOrRd"), 
+         alpha.regions = 1)
+```
+To finish off this map, I coded in a customized label and pop-ups. 
+```{r}
+mylabel <- glue::glue("{ca_counties_withgeo$NAM} {ca_counties_withgeo$medincome}")
 
+mypopup <- glue::glue("<strong>{ca_counties_withgeo$NAM}</strong><br />
+                      Total Population: {ca_counties_withgeo$totalpop}<br />
+                      Median Income: {ca_counties_withgeo$medincome}") %>% 
+  lapply(htmltools::HTML)
+```
+After processing the code, I made sure that it worked without error.
+```{r}
+mapview(ca_counties_withgeo, zcol = "medincome", 
+         col.regions = RColorBrewer::brewer.pal(9, "YlOrRd"), 
+         alpha.regions = 1,
+         popup = mypopup)
+```
+```{r}
+mapview(ca_counties_withgeo, zcol = "medincome", 
+         col.regions = RColorBrewer::brewer.pal(9, "YlOrRd"), 
+         alpha.regions = 1,
+         label = mylabel,
+        popup = mypopup)
+```
+
+The data displayed on the map above show that median income within California counties varies wildly. My home county is 53,350, while San Francisco County has a median income of 126,187. Further analysis of the data to include discrepencies by race, gender, and educational level would provide further insights about the California economical makeup by county.
