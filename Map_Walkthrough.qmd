@@ -86,6 +86,7 @@ mapview(ca_counties_withgeo, zcol = "medincome",
          alpha.regions = 1,
          popup = mypopup)
 ```
+
 ```{r}
 mapview(ca_counties_withgeo, zcol = "medincome", 
          col.regions = RColorBrewer::brewer.pal(9, "YlOrRd"), 

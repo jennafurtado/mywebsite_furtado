@@ -19,6 +19,8 @@ website:
       - Map_Walkthrough.qmd
       - undergraduate_thesis.qmd
       - news_story_example.qmd
+      - 01_virginia_election_project_datawrangling.qmd
+      - 02_virginia_election_project_youranalysis.qmd
     
       
 
