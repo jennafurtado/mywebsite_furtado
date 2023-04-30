@@ -22,23 +22,15 @@ options(scipen = 999)
 options(stringsAsFactors = FALSE)
 
 
-# library(knitr)
-# # print everything as paged ----
-# knit_print.data.frame <- function (x, options, ...) {
-#   rmarkdown::paged_table(x, options) |>
-#     rmarkdown:::print.paged_df()
-# }
-# registerS3method("knit_print", "data.frame", knit_print.data.frame)
-
 
 
 ```
 
 # Getting 2020 Presidential results
 
-Data available here: <https://historical.elections.virginia.gov/elections/view/144567/>
+All data for the Virginia gubernatorial elections can be found here: <https://historical.elections.virginia.gov/elections/view/144567/> 
 
-A little column cleaning and we'll load in the data file.
+Then, we just clean up the columns, and process the data. I've decided to label the file 'prez_2020.'
 
 ```{r}
 
@@ -46,7 +38,7 @@ prez_2020 <- read_csv("processed_data/va_2020_prez_cleaned.csv")
 
 ```
 
-Let's see what we have
+Using the head function, the next step is to check out what data we have.
 
 ```{r}
 
@@ -55,7 +47,7 @@ head(prez_2020)
 
 ```
 
-Calculating percentage of the vote
+In order to calculate what percentage of the vote each presidential candidate got, we have to create a new column using the 'mutate' function. The formula for how to do this can be found below.
 
 ```{r}
 
@@ -66,7 +58,7 @@ prez_2020 %>%
 
 ```
 
-Now let's do some rounding and move that decimal point
+For ease of readability, it's important to move the decimal point two places over.
 
 ```{r}
 
