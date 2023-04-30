@@ -1,5 +1,5 @@
 ---
-title: "Virginia Election Project"
+title: "Virginia Election Project Visual Analysis"
 author: "Jenna Furtado"
 execute:
   echo: true
@@ -7,6 +7,8 @@ format:
   html:
     self-contained: true
     code-tools: true
+    toc: true
+    toc-location: left
 ---
 
 

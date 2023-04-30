@@ -1,10 +1,15 @@
 ---
-title: "More Stuff About Me"
+title: "Resume"
+author: "Jenna Furtado"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-location: left
 ---
 
-About this site  
-  
-Here is some new stuff!
+Attached below is a pdf of my most recently updated resume. (insert here)
 
 ```{r}
 1 + 1 

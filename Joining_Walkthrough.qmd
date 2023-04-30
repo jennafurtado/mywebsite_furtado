@@ -1,0 +1,10 @@
+---
+title: "Joining Walkthrough"
+author: "Jenna Furtado"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-location: left
+---

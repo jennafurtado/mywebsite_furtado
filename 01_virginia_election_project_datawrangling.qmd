@@ -1,11 +1,14 @@
 ---
 title: "Virginia Election Project"
 author: "Jenna Furtado"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
 execute:
   echo: true
 format:
   html:
     self-contained: true
+    toc: true
+    toc-location: left
     code-tools: true
 ---
 

@@ -21,6 +21,8 @@ website:
       - news_story_example.qmd
       - 01_virginia_election_project_datawrangling.qmd
       - 02_virginia_election_project_youranalysis.qmd
+      - Joining_Walkthrough.qmd
+      - Sample_News_Story.qmd
     
       
 

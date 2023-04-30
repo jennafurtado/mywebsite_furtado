@@ -1,10 +1,19 @@
 ---
-title: News Story Writing Sample
+title: "News Story Writing Sample"
+author: "Jenna Furtado"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-location: left
 ---
 
 The story below was written for my Introduction to News Writing and Reporting Class. The assignment to write a feature piece about an event going on in the DMV area. I chose to write about the D.C. Pride Parade, and interviewed several folks that attended the parade about what it meant to them. I also examined the history of pride parades in D.C. and probed opinions about the corporatization of pride month. The story is located below:
 
-Thousands of people filled the streets of Washington D.C. Logan and DuPont Circle neighborhoods this weekend for the annual pride parade--the first in-person parade since 2019.
+**Policing Pride: What make a Pride Parade?**
+
+Thousands of people filled the streets of Washington D.C.'s Logan and DuPont Circle neighborhoods this weekend for the annual pride parade---the first in-person parade since 2019.
 
 "It feels amazing! My girlfriend and I have been together for 3 years and we've been waiting to celebrate pride together so it's really meaningful." George Washington University (GWU) graduate Caroline Frentz exclaimed.
 
