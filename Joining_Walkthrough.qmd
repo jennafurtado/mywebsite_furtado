@@ -8,3 +8,13 @@ format:
     toc: true
     toc-location: left
 ---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(here)
+
+```
+
