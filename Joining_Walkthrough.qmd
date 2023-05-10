@@ -1,5 +1,5 @@
 ---
-title: "Joining Walkthrough"
+title: "Filtering and Sorting Walkthrough"
 author: "Jenna Furtado"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 format:
@@ -15,6 +15,95 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(here)
+library(readr)
 
 ```
 
+This page will take you through the basics of how to sort and filter information with R. The first step is to load which packages you are going to use, as seen above. The next step is to load in the data that we will be analyzing. The arrow shows R what you want to name your file for ease of legibility. This data file is popular baby names in the state of the New York.
+
+```{r}
+
+Popular_Baby_Names <- read_csv("Popular_Baby_Names.csv", show_col_types = FALSE)
+
+Popular_Baby_Names
+
+```
+
+On the dataframe above, you might notice that some of the column labels are a little wordy. Let's make them a little cleaner, so that the next steps are easier for R.
+
+```{r}
+
+colnames(Popular_Baby_Names)[1] = "birth_year"
+
+colnames(Popular_Baby_Names)[4] = "first_name"
+
+```
+
+That's better! If you ever download a data file that has less than ideal column titles, you can use the above method to rename them.
+
+There's a lot of data here to sort through, as the data file takes popular names from 2011 to 2018. That's where filtering and sorting can come in handy! For example, it can be really helpful to sort just by one year to see the popular names from that year. To do that, we can use the filter function, as seen below.
+
+ALSO! Just a few important things to remember, always do a == when you are sorting or want to name a specific thing. Numbers don't require quotation marks, but words do. You can see an example of this above, when we renamed our column titles.
+
+```{r}
+
+filter(Popular_Baby_Names, birth_year == 2015)
+
+```
+
+There's still lots of data to sort through, let's narrow it by gender now too. Also, an easy way to help you stack different actions is to a pipe. A pipe %>% (control + shift + m), operates as a way to tell the computer what you want it to do next. It goes in sequential order, so make sure you have what you want R to do first at the top and then work your way downwards.
+
+```{r}
+
+Popular_Baby_Names %>% 
+  filter(birth_year == 2015,
+         Gender == "FEMALE")
+
+```
+
+Alright, now we're getting somewhere. To really narrow that data down, let's add a filter on ethnicity as well.
+
+```{r}
+
+Popular_Baby_Names %>% 
+  filter(birth_year == 2015,
+         Gender == "FEMALE",
+         Ethnicity == "HISPANIC")
+
+```
+
+Now, that's a lot more manageable! If we're interested in seeing how many Hispanic girls were named a specific name, we can use something called sorting. Sorting allows you to look at the values in descending or ascending order.
+
+Let's sort this data from highest value to lowest with desc()
+
+```{r}
+
+Popular_Baby_Names %>% 
+  filter(birth_year == 2015,
+         Gender == "FEMALE",
+         Ethnicity == "HISPANIC") %>% 
+  arrange(desc(Count))
+
+```
+
+Thanks to sorting, we've found out what the top ten names for Hispanic females born in 2015 were. If we want to save this data file for later, we can just follow the steps below.
+
+```{r}
+
+Hispanic_Names2015 <- Popular_Baby_Names %>% 
+  filter(birth_year == 2015,
+         Gender == "FEMALE",
+         Ethnicity == "HISPANIC") %>% 
+  arrange(desc(Count))
+
+```
+
+Let's make sure that saved...
+
+```{r}
+
+Hispanic_Names2015
+
+```
+
+Perfect! With this, you've now learned the basics of filtering and sorting. It can be super useful to dial into specific information you need and make an overwhelming amount of data seem a lot more manageable.

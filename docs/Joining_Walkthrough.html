@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jenna Furtado">
-<meta name="dcterms.date" content="2023-04-30">
+<meta name="dcterms.date" content="2023-05-10">
 
-<title>Jenna’s Website - Joining Walkthrough</title>
+<title>Jenna’s Website - Filtering and Sorting Walkthrough</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +22,69 @@ width: 0.8em;
 margin: 0 0.8em 0.2em -1.6em;
 vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
 
 
@@ -3950,7 +4013,7 @@ vertical-align: -.125em;
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html">
- <span class="menu-text">More Stuff About Me</span></a>
+ <span class="menu-text">Resume</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./portfolio.html">
@@ -3966,7 +4029,7 @@ vertical-align: -.125em;
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./undergraduate_thesis.html">
- <span class="menu-text">Writing Example</span></a>
+ <span class="menu-text">Writing Sample</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./news_story_example.html">
@@ -3978,11 +4041,11 @@ vertical-align: -.125em;
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./02_virginia_election_project_youranalysis.html">
- <span class="menu-text">Virginia Election Project</span></a>
+ <span class="menu-text">Virginia Election Project Visual Analysis</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./Joining_Walkthrough.html" aria-current="page">
- <span class="menu-text">Joining Walkthrough</span></a>
+ <span class="menu-text">Filtering and Sorting Walkthrough</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./Sample_News_Story.html">
@@ -4008,7 +4071,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Joining Walkthrough</h1>
+<h1 class="title">Filtering and Sorting Walkthrough</h1>
 </div>
 
 
@@ -4025,7 +4088,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 30, 2023</p>
+      <p class="date">May 10, 2023</p>
     </div>
   </div>
   
@@ -4035,6 +4098,155 @@ vertical-align: -.125em;
 
 </header>
 
+<p>This page will take you through the basics of how to sort and filter information with R. The first step is to load which packages you are going to use, as seen above. The next step is to load in the data that we will be analyzing. The arrow shows R what you want to name your file for ease of legibility. This data file is popular baby names in the state of the New York.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Popular_Baby_Names <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Popular_Baby_Names.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Popular_Baby_Names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 49,509 × 6
+   `Year of Birth` Gender Ethnicity `Child&#39;s First Name` Count  Rank
+             &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;                &lt;dbl&gt; &lt;dbl&gt;
+ 1            2011 FEMALE HISPANIC  GERALDINE               13    75
+ 2            2011 FEMALE HISPANIC  GIA                     21    67
+ 3            2011 FEMALE HISPANIC  GIANNA                  49    42
+ 4            2011 FEMALE HISPANIC  GISELLE                 38    51
+ 5            2011 FEMALE HISPANIC  GRACE                   36    53
+ 6            2011 FEMALE HISPANIC  GUADALUPE               26    62
+ 7            2011 FEMALE HISPANIC  HAILEY                 126     8
+ 8            2011 FEMALE HISPANIC  HALEY                   14    74
+ 9            2011 FEMALE HISPANIC  HANNAH                  17    71
+10            2011 FEMALE HISPANIC  HAYLEE                  17    71
+# … with 49,499 more rows</code></pre>
+</div>
+</div>
+<p>On the dataframe above, you might notice that some of the column labels are a little wordy. Let’s make them a little cleaner, so that the next steps are easier for R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Popular_Baby_Names)[<span class="dv">1</span>] <span class="ot">=</span> <span class="st">&quot;birth_year&quot;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Popular_Baby_Names)[<span class="dv">4</span>] <span class="ot">=</span> <span class="st">&quot;first_name&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>That’s better! If you ever download a data file that has less than ideal column titles, you can use the above method to rename them.</p>
+<p>There’s a lot of data here to sort through, as the data file takes popular names from 2011 to 2018. That’s where filtering and sorting can come in handy! For example, it can be really helpful to sort just by one year to see the popular names from that year. To do that, we can use the filter function, as seen below.</p>
+<p>ALSO! Just a few important things to remember, always do a == when you are sorting or want to name a specific thing. Numbers don’t require quotation marks, but words do. You can see an example of this above, when we renamed our column titles.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(Popular_Baby_Names, birth_year <span class="sc">==</span> <span class="dv">2015</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,045 × 6
+   birth_year Gender Ethnicity                  first_name  Count  Rank
+        &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;                      &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1       2015 FEMALE WHITE NON HISPANIC         Poppy          10    83
+ 2       2015 FEMALE HISPANIC                   Amber          29    62
+ 3       2015 MALE   BLACK NON HISPANIC         Major          15    58
+ 4       2015 FEMALE HISPANIC                   Rose           15    76
+ 5       2015 FEMALE WHITE NON HISPANIC         Shaina         14    79
+ 6       2015 MALE   BLACK NON HISPANIC         Israel         16    57
+ 7       2015 FEMALE WHITE NON HISPANIC         Gianna         45    50
+ 8       2015 FEMALE ASIAN AND PACIFIC ISLANDER Alice          33    20
+ 9       2015 FEMALE WHITE NON HISPANIC         Tessa          19    74
+10       2015 MALE   ASIAN AND PACIFIC ISLANDER Christopher    24    41
+# … with 2,035 more rows</code></pre>
+</div>
+</div>
+<p>There’s still lots of data to sort through, let’s narrow it by gender now too. Also, an easy way to help you stack different actions is to a pipe. A pipe %&gt;% (control + shift + m), operates as a way to tell the computer what you want it to do next. It goes in sequential order, so make sure you have what you want R to do first at the top and then work your way downwards.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Popular_Baby_Names <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(birth_year <span class="sc">==</span> <span class="dv">2015</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>         Gender <span class="sc">==</span> <span class="st">&quot;FEMALE&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,044 × 6
+   birth_year Gender Ethnicity                  first_name Count  Rank
+        &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;                      &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;
+ 1       2015 FEMALE WHITE NON HISPANIC         Poppy         10    83
+ 2       2015 FEMALE HISPANIC                   Amber         29    62
+ 3       2015 FEMALE HISPANIC                   Rose          15    76
+ 4       2015 FEMALE WHITE NON HISPANIC         Shaina        14    79
+ 5       2015 FEMALE WHITE NON HISPANIC         Gianna        45    50
+ 6       2015 FEMALE ASIAN AND PACIFIC ISLANDER Alice         33    20
+ 7       2015 FEMALE WHITE NON HISPANIC         Tessa         19    74
+ 8       2015 FEMALE ASIAN AND PACIFIC ISLANDER Christina     19    34
+ 9       2015 FEMALE ASIAN AND PACIFIC ISLANDER Lillian       19    34
+10       2015 FEMALE ASIAN AND PACIFIC ISLANDER Riley         10    43
+# … with 1,034 more rows</code></pre>
+</div>
+</div>
+<p>Alright, now we’re getting somewhere. To really narrow that data down, let’s add a filter on ethnicity as well.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Popular_Baby_Names <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(birth_year <span class="sc">==</span> <span class="dv">2015</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>         Gender <span class="sc">==</span> <span class="st">&quot;FEMALE&quot;</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>         Ethnicity <span class="sc">==</span> <span class="st">&quot;HISPANIC&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 288 × 6
+   birth_year Gender Ethnicity first_name Count  Rank
+        &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;
+ 1       2015 FEMALE HISPANIC  Amber         29    62
+ 2       2015 FEMALE HISPANIC  Rose          15    76
+ 3       2015 FEMALE HISPANIC  Ariel         20    71
+ 4       2015 FEMALE HISPANIC  Aubree        16    75
+ 5       2015 FEMALE HISPANIC  Alanna        11    80
+ 6       2015 FEMALE HISPANIC  Madelyn       26    65
+ 7       2015 FEMALE HISPANIC  Dayana        19    72
+ 8       2015 FEMALE HISPANIC  Jacqueline    17    74
+ 9       2015 FEMALE HISPANIC  Alisson       15    76
+10       2015 FEMALE HISPANIC  Lucia         30    61
+# … with 278 more rows</code></pre>
+</div>
+</div>
+<p>Now, that’s a lot more manageable! If we’re interested in seeing how many Hispanic girls were named a specific name, we can use something called sorting. Sorting allows you to look at the values in descending or ascending order.</p>
+<p>Let’s sort this data from highest value to lowest with desc()</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Popular_Baby_Names <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(birth_year <span class="sc">==</span> <span class="dv">2015</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>         Gender <span class="sc">==</span> <span class="st">&quot;FEMALE&quot;</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>         Ethnicity <span class="sc">==</span> <span class="st">&quot;HISPANIC&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 288 × 6
+   birth_year Gender Ethnicity first_name Count  Rank
+        &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;
+ 1       2015 FEMALE HISPANIC  Isabella     307     1
+ 2       2015 FEMALE HISPANIC  Sophia       269     2
+ 3       2015 FEMALE HISPANIC  Mia          257     3
+ 4       2015 FEMALE HISPANIC  Emma         196     4
+ 5       2015 FEMALE HISPANIC  Camila       180     5
+ 6       2015 FEMALE HISPANIC  Sofia        178     6
+ 7       2015 FEMALE HISPANIC  Abigail      143     7
+ 8       2015 FEMALE HISPANIC  Ashley       138     8
+ 9       2015 FEMALE HISPANIC  Emily        137     9
+10       2015 FEMALE HISPANIC  Madison      120    10
+# … with 278 more rows</code></pre>
+</div>
+</div>
+<p>Thanks to sorting, we’ve found out what the top ten names for Hispanic females born in 2015 were. If we want to save this data file for later, we can just follow the steps below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Hispanic_Names2015 <span class="ot">&lt;-</span> Popular_Baby_Names <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(birth_year <span class="sc">==</span> <span class="dv">2015</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>         Gender <span class="sc">==</span> <span class="st">&quot;FEMALE&quot;</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>         Ethnicity <span class="sc">==</span> <span class="st">&quot;HISPANIC&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s make sure that saved…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Hispanic_Names2015</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 288 × 6
+   birth_year Gender Ethnicity first_name Count  Rank
+        &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;
+ 1       2015 FEMALE HISPANIC  Isabella     307     1
+ 2       2015 FEMALE HISPANIC  Sophia       269     2
+ 3       2015 FEMALE HISPANIC  Mia          257     3
+ 4       2015 FEMALE HISPANIC  Emma         196     4
+ 5       2015 FEMALE HISPANIC  Camila       180     5
+ 6       2015 FEMALE HISPANIC  Sofia        178     6
+ 7       2015 FEMALE HISPANIC  Abigail      143     7
+ 8       2015 FEMALE HISPANIC  Ashley       138     8
+ 9       2015 FEMALE HISPANIC  Emily        137     9
+10       2015 FEMALE HISPANIC  Madison      120    10
+# … with 278 more rows</code></pre>
+</div>
+</div>
+<p>Perfect! With this, you’ve now learned the basics of filtering and sorting. It can be super useful to dial into specific information you need and make an overwhelming amount of data seem a lot more manageable.</p>
 
 
 
