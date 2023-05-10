@@ -9,10 +9,4 @@ format:
     toc-location: left
 ---
 
-Attached below is a pdf of my most recently updated resume. (insert here)
-
-```{r}
-1 + 1 
-
-
-```
+Attached below is a pdf of my most recently updated resume.
