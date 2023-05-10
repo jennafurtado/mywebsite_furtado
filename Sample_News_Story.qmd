@@ -8,3 +8,65 @@ format:
     toc: true
     toc-location: left
 ---
+
+This page features a short example news story to demonstrate how R can be integrated into stories.
+
+```{r setup, include=FALSE, warning=FALSE, message=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(lubridate)
+library(readxl)
+library(writexl)
+library(janitor)
+
+```
+
+```{r}
+
+events <- readRDS("data/events_saved.rds")
+
+```
+
+
+2020 was a contentious election year, identified by calcified party politics and insults thrown around on Twitter. Before Joe Biden became the official nominee for the Democratic party though, there were a lot of different candidates vying for that seat (though they may not have all actually believed they could become the nominee). 
+
+A total of 29 people all threw their hat into the ring, hosting numerous events throughout the United States. For example, town halls were a popular way to connect with the greater community.
+
+```{r}
+
+events %>% 
+  filter(event_type == "town hall") %>% 
+  summarise(n())
+
+eventnumber_vector <- c(73)
+
+eventtype_vector <- c("town halls")
+
+howmany_function <- function(eventnumber_vector, eventtype_vector){
+  result <- paste0("There were ", eventnumber_vector, eventtype_vector, " held throuughout 2019.")
+  return(result)
+}
+
+howmany_function(eventnumber_vector, eventtype_vector)
+
+```
+
+Another way that primary candidates promoted themselves and their politcs was through debates. 
+
+```{r}
+
+events %>% 
+  filter(event_type == "debate") %>% 
+  summarise(n())
+
+debatenumber_vector <- c(20)
+
+eventtype_vector <- c("debates")
+
+howmany_function(debatenumber_vector, eventtype_vector)
+
+```
+
+Debates and tpwn halls each played a different purpose in narrowing the playing field for primary candidates. While debates showed off a candidate's ability to speak under pressure and defend their policies to their fellow candidates as well as the public, town halls functioned as a way for the public to interact with the candidates. There were many factors that led to the choosing of now President Joe Biden as the democratic candidate for the 2020 election, though his performance in debates and town halls probably played a role.
